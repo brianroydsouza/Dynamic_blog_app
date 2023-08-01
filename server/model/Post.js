@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+import UserSchema from './User.js';
 const PostSchema = new mongoose.Schema({
   title: String,
   desc: String,
@@ -9,6 +9,10 @@ const PostSchema = new mongoose.Schema({
   username: String,
   cat:String,
   likes: { type: Number, default: 0 },
+  likedBy: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserSchema', // This establishes the reference to the User model
+  }],
   comments: [
     {
       text: String,
