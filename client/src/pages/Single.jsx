@@ -74,7 +74,7 @@ const Single = () => {
           Authorization: `Bearer ${token}`,
         }
       });
-      setComments([...comments,response.data.post]);
+     setComments(response.data.post);
       setNewComment('');
     } catch (error) {
       console.error('Error adding comment:', error);
