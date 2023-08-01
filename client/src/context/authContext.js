@@ -13,7 +13,6 @@ export const AuthContexProvider = ({ children }) => {
       console.log(process.env.REACT_APP_BACKEND_URL);
       const res = await axios.post(process.env.REACT_APP_BACKEND_URL + "api/auth/login", inputs);
       setCurrentUser(res.data);
-      console.log(res.data.token);
       localStorage.setItem("Token",res.data.token);
     };
     
