@@ -70,6 +70,8 @@ const Write = () => {
   };
 
   return (
+    <>
+   { currentUser &&
     <div className="add">
       <div className="content">
         <input
@@ -182,6 +184,8 @@ const Write = () => {
         </div>
       </div>
     </div>
+    }
+    </>
   );
 };
 
