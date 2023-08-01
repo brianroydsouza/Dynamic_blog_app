@@ -22,7 +22,6 @@ export const getPost = async(req, res) => {
 
 export const addPost = async(req, res) => {
   const {value , desc,cat,img, userName} = req.body
-  console.log({value , desc,cat,img, userName});
   try {
     await PostSchema.create({
       title: value,
@@ -53,15 +52,44 @@ export const deletePost = async(req, res) => {
 export const updateLikes = async(req, res) => {
   try {
     const postId = req.params.id;
-
+    const userId = req.body.userId;
     const post = await PostSchema.findById(postId);
-    console.log(post);
-    post.likes += 1;
+
+    // Check if the user has already liked the post
+    if (post.likedBy.includes(userId)) {
+      return res.status(400).json('You have already liked the post.' );
+    }
+
+    post.likes++;
+    post.likedBy.push(userId);
     await post.save();
-    res.json({ likes: post.likes });
+
+    return res.json({ likes: post.likes })
   } catch (error) {
     console.error('Error liking the post:', error);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const deleteLike = async(req, res) => {
+  try {
+    const postId = req.params.id;
+    const userId = req.body.userId;
+    const post = await PostSchema.findById(postId);
+
+    // Check if the user has not liked the post
+    if (!post.likedBy.includes(userId)) {
+      return res.status(400).json('You have not liked the post.');
+    }
+
+    post.likes--;
+    post.likedBy.pull(userId);
+    await post.save();
+
+    return res.json({ likes: post.likes });
+  } catch (error) {
+    console.error('Error disliking the post:', error);
+    return res.status(500).json({ message: 'Error disliking the post' });
   }
 };
 
