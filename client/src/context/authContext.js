@@ -18,7 +18,8 @@ export const AuthContexProvider = ({ children }) => {
     };
     
     const logout = async (inputs) => {
-    await axios.post(process.env.REACT_APP_BACKEND_URL + "api/auth/logout");
+      await axios.post(process.env.REACT_APP_BACKEND_URL + "api/auth/logout");
+      localStorage.removeItem('token');
     setCurrentUser(null);
   };
 
