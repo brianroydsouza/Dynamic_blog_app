@@ -7,6 +7,7 @@ import {
   updatePost,
   updateLikes,
   updateComments,
+  deleteLike,
 } from "../controllers/post.js";
 import {auth} from  "../middleware/auth.js"
 
@@ -17,7 +18,8 @@ router.get("/:id", getPost);
 router.post("/",auth, addPost);
 router.delete("/:id",auth, deletePost);
 router.put("/:id",auth, updatePost);
-router.post("/:id/like", updateLikes);
+router.post("/:id/like",auth, updateLikes);
+router.delete("/:id/like",auth, deleteLike);
 router.post("/:id/comments",auth, updateComments);
 
 export default router;
