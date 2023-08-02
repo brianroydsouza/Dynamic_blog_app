@@ -1,10 +1,11 @@
-import React, { useState , useContext} from "react";
+import React, { useState , useContext, useEffect} from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { AuthContext } from "../context/authContext";
+import Unauth from "../Unauthorization/Unauthorization";
 
 
 const Write = () => {
@@ -18,6 +19,14 @@ const Write = () => {
   const [cat, setCat] = useState(state?.cat || "");
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if(!currentUser){
+      navigate("/unAuth")
+    }
+
+  }, []);
+
   const upload = async () => {
     try {
       const formData = new FormData();
@@ -184,7 +193,7 @@ const Write = () => {
         </div>
       </div>
     </div>
-    }
+   }
     </>
   );
 };
