@@ -1,12 +1,36 @@
 $lightGreen: #b9e7e7;
 
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background: rgb(191, 233, 246);
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: rgb(206, 242, 253);
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: rgb(192, 239, 254);
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb:active {
+  background: rgb(2, 196, 255);
+  border-radius: 10px;
+}
 .app {
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   .container {
-    width: 95vw;
+    width: 100%;
 
-    .NoPosts{
+    .NoPosts {
       margin: auto;
       font-family: "Times New Roman", Times, serif;
     }
@@ -68,14 +92,17 @@ $lightGreen: #b9e7e7;
     //NAVBAR
 
     .navbar {
+      background-color: rgb(225, 255, 247);
+      padding-right: 35px;
       .container {
-        padding: 10px 0px;
+        padding: 10px 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         .logo {
           img {
             width: 120px;
+            height: 50px;
           }
         }
         .links {
@@ -95,6 +122,7 @@ $lightGreen: #b9e7e7;
 
           .write {
             background-color: $lightGreen;
+            margin-right: 30px;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -117,7 +145,10 @@ $lightGreen: #b9e7e7;
     //FOOTER
 
     footer {
-      margin-top: 100px;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 98%;
       padding: 20px;
       background-color: $lightGreen;
       display: flex;
@@ -133,15 +164,18 @@ $lightGreen: #b9e7e7;
 
     .home {
       .posts {
-        margin-top: 50px;
+        margin-top: 30px;
         display: flex;
         flex-direction: column;
         gap: 150px;
+        margin-bottom: 150px;
+        padding: 0px 30px;
 
         .post {
           display: flex;
           gap: 100px;
-
+          padding-bottom: 23px;
+          border-bottom: 1px dotted gray;
           &:nth-child(2n + 1) {
             flex-direction: row-reverse;
           }
@@ -173,7 +207,6 @@ $lightGreen: #b9e7e7;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-
             h1 {
               font-size: 48px;
             }
@@ -203,15 +236,16 @@ $lightGreen: #b9e7e7;
     }
 
     //SINGLE
-.shareBtn{
-  display: flex;
-  gap: 10px;
-  margin: auto;
-}
+    .shareBtn {
+      display: flex;
+      gap: 10px;
+      margin: auto;
+    }
     .single {
       display: flex;
       gap: 50px;
-
+      padding: 0px 20px;
+      margin-bottom: 200px;
       .content {
         flex: 5;
         display: flex;
@@ -306,16 +340,16 @@ $lightGreen: #b9e7e7;
         }
       }
     }
-    .commentBtn{
+    .commentBtn {
       width: 200px;
     }
-    .CommentsSection{
-      font-family: 'georgia';
+    .CommentsSection {
+      font-family: "georgia";
     }
-    .userNamecomment{
+    .userNamecomment {
       font-size: small;
     }
-    .comments{
+    .comments {
       margin-left: 30px;
     }
     //WRITE
@@ -357,34 +391,34 @@ $lightGreen: #b9e7e7;
         .item {
           border: 1px solid lightgray;
           padding: 10px;
-          flex:1;
+          flex: 1;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           font-size: 12px;
           color: #555;
 
-          h1{
+          h1 {
             font-size: 20px;
           }
 
-          .file{
+          .file {
             text-decoration: underline;
             cursor: pointer;
           }
 
-          .buttons{
+          .buttons {
             display: flex;
             justify-content: space-between;
 
-            :first-child{
+            :first-child {
               cursor: pointer;
               color: teal;
               background-color: white;
               border: 1px solid teal;
               padding: 3px 5px;
             }
-            :last-child{
+            :last-child {
               cursor: pointer;
               color: white;
               background-color: teal;
@@ -393,7 +427,7 @@ $lightGreen: #b9e7e7;
             }
           }
 
-          .cat{
+          .cat {
             display: flex;
             align-items: center;
             gap: 2px;
