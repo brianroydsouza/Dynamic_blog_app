@@ -108,12 +108,12 @@ const Single = () => {
   return (
     <div className="single">
       <div className="content">
-        <img src={`../upload/${post?.img}`} alt="" />
+        <img src={post?.img} alt="" />
         <div className="user">
 
           <div className="info">
             <span>{post.username}</span>
-            <p>Posted {moment(post.date).fromNow()}</p>
+            <p>Posted {moment(post.createdAt).fromNow()}</p>
           </div>
           {currentUser?.user.Role === "Admin" && (
             <div className="edit">
@@ -124,6 +124,7 @@ const Single = () => {
             </div>
           )}
           <p>Likes: {likes}</p>
+          <p>comments: {comments.length}</p>
 
           {currentUser && (
             liked ? (
