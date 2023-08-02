@@ -45,10 +45,27 @@ const Write = () => {
     setDesc(content);
   };
 
+  const uploadFile = async () =>{
+    const data = new FormData()
+    data.append("file", file)
+    data.append("upload_preset", 'blob_preset')
+
+    try {
+      let cloudName = process.env.REACT_APP_CLOUD_NAME
+      let resourceType = 'auto'
+      let api = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`
+
+      const res = await axios.post(api, data);
+      const { secure_url } = res.data
+      return secure_url
+    } catch (error) {
+      
+    }
+  }
   const handleClick = async (e) => {
     e.preventDefault();
-    const imgUrl = await upload();
-
+    const imgUrl = await uploadFile();
+console.log(imgUrl);
     try {
       state
         ? await axios.put(process.env.REACT_APP_BACKEND_URL + `api/posts/${state._id}`, {
