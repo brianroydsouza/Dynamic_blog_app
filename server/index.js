@@ -13,7 +13,11 @@ dotenv.config();
 const port = process.env.PORT || "8800";
 app.set("port", port);
 
-app.use(cors())
+app.use(cors({
+  origin :["https://dynamic-blog-app-5xhw.vercel.app"],
+  methods:["POST" , "GET"],
+  credentials: true
+  ))
 
 //Middleware
 app.use(express.json({ limit: '100mb' }));
