@@ -13,11 +13,7 @@ dotenv.config();
 const port = process.env.PORT || "8800";
 app.set("port", port);
 
-app.use(cors({
-  origin :["https://dynamic-blog-app-5xhw.vercel.app"],
-  methods:["POST" , "GET"],
-  credentials: true
-  ))
+app.use(cors())
 
 //Middleware
 app.use(express.json({ limit: '100mb' }));
@@ -52,7 +48,6 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 });
 
 // Serve uploaded files as static files
-app.use('/uploaded', express.static(path.join(__dirname, "public", "upload")));
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 
