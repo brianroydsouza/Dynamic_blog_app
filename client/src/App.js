@@ -12,6 +12,7 @@ import Single from "./pages/Single";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./style.scss"
+import Unauth from "./Unauthorization/Unauthorization";
 
 const Layout = () => {
   return (
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/write",
-        element: <Write/>,
+        element: <Write/>
       },
     ],
   },
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/unAuth",
+    element: <Unauth />,
   },
 ]);
 
