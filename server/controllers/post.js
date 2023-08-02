@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 export const getPosts = async(req, res) => {
   try {
-    const ALlPosts = await PostSchema.find({});
+    const ALlPosts = await PostSchema.find({}).sort({ _id: -1 });
       res.status(200).json({ posts: ALlPosts});
   } catch (error) {
     res.status(500).json({ msg: "something went wrong"});
@@ -22,6 +22,7 @@ export const getPost = async(req, res) => {
 
 export const addPost = async(req, res) => {
   const {value , desc,cat,img, userName} = req.body
+  console.log(img);
   try {
     await PostSchema.create({
       title: value,
