@@ -16,7 +16,7 @@ const Unauth = (props) => {
           alt=""
           style={{ height: '80vh', width: '95vw' }}
         />
-        <div className="container d-flex justify-content-center" >
+        <div style={{display:'flex', justifyContent:'center'}} >
           <button id="LoginBtn" onClick={login}>Return to login In page</button>
         </div>
       </div>
