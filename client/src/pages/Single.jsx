@@ -108,7 +108,23 @@ const Single = () => {
   return (
     <div className="single">
       <div className="content">
-        <img src={post?.img} alt="" />
+        {post.imgType === "image" ? (
+          <img src={post?.img} alt="" />
+        ) : post.imgType === "video" ? (
+          <video controls>
+            <source src={post?.img} type="video/mp4" />
+            Your browser does not support HTML video.
+          </video>
+        ) :
+          <iframe
+            width="660"
+            height="315"
+            src={`https://www.youtube.com/embed/${post?.img?.split('watch?v=')[1]}`}
+            title="YouTube Video Player"
+            frameBorder="0"
+            allowFullScreen
+          ></iframe>
+        }
         <div className="user">
 
           <div className="info">
