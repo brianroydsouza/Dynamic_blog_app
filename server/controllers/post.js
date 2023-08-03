@@ -21,15 +21,15 @@ export const getPost = async(req, res) => {
 };
 
 export const addPost = async(req, res) => {
-  const {value , desc,cat,img, userName} = req.body
-  console.log(img);
+  const {value , desc,cat,img, userName , type} = req.body
   try {
     await PostSchema.create({
       title: value,
       desc: desc,
       img: img,
       userId: userName,
-      cat:cat
+      cat:cat,
+      imgType: type
     });
   res.status(200).json({ posts: "Post created"});
   } catch (error) {
@@ -113,17 +113,22 @@ export const updateComments = async(req, res) => {
 export const updatePost = async(req, res) => {
   try {
   const {id} = req.params
-  const {value, desc, img, cat} = req.body
+  const {value, desc, img, cat , type} = req.body
+
+  const updateData = {
+    title: value,
+    desc: desc.replace(/<p>/g, '').replace(/<\/p>/g, ''),
+    cat: cat,
+  };
+  
+  if (img) {
+    updateData.img = img;
+    updateData.imgType = type;
+
+  }
+
     await PostSchema.updateOne(
-      { _id: id },
-      {
-        $set: {
-          title: value,
-          desc: desc.replace(/<p>/g, '').replace(/<\/p>/g, ''),
-          img: img,
-          cat:cat
-        },
-      }
+      { _id: id },{ $set: updateData }
     );
     res.status(200).json({
       success: true,
