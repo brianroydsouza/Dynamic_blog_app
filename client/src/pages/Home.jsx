@@ -6,7 +6,18 @@ import axios from "axios";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [Allposts, setAllPosts] = useState([]);
   const token = localStorage.getItem("Token");
+  const category = useLocation().search
+
+  useEffect(()=>{
+    if(category){
+      const filteredPosts = Allposts.filter((post) => post.cat === category.split('?cat=')[1]);
+      setPosts(filteredPosts)
+    }else{
+      setPosts(Allposts)
+    }
+  },[category])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +28,7 @@ const Home = () => {
           }
         });
         setPosts(res.data.posts);
+        setAllPosts(res.data.posts);
       } catch (err) {
         console.log(err);
       }
