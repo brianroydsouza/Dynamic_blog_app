@@ -4,9 +4,9 @@ import Logo from "../img/logo.png";
 const Footer = () => {
   return (
     <footer>
-      <img src={Logo} alt="" />
+      <div></div>
       <span>
-        Made for <b>Enthusia</b> ♥️ .
+      With warm regards from <b>Brian</b> ♥️
       </span>
     </footer>
   );
