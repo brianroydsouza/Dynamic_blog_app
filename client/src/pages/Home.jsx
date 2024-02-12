@@ -132,7 +132,6 @@ const Home = () => {
                       __html: DOMPurify.sanitize(post.desc),
                     }}
                   ></p>
-
                 </Typography>
                 <Link
                   className="link"
